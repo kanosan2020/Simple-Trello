@@ -4,13 +4,14 @@ import { v4 as uuid } from 'uuid';
 
 export const TaskAddInput = ({inputText, setInputText, setTaskList, taskList}) => {
   const handleSubmit = (e) => {
+    const taskId = uuid();
     e.preventDefault();
     if(inputText === '') {return; }
     // カードを追加する。
     setTaskList([...taskList,
     {
-      id: taskList.length,
-      draggableId: `task-${taskList.length}`,
+      id: taskId,
+      draggableId: `task-${taskId}`,
       text: inputText,
     },
   ]);
@@ -18,7 +19,6 @@ export const TaskAddInput = ({inputText, setInputText, setTaskList, taskList}) =
   };
 
   const handleChange = (e) => {
-    const taskId = uuid();
     setInputText(e.target.value);
   };
   return (
